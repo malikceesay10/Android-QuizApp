@@ -1,47 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="158dp"
-        android:layout_marginBottom="344dp"
-        android:text="HALLO"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/okButton"
-        tools:ignore="MissingConstraints" />
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp">
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
-        android:text="Meine erste App"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Quiz App"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="48dp"/>
 
     <Button
-        android:id="@+id/okButton"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_to_login"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:text="OK"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:text="Einloggen"
+        android:layout_marginBottom="16dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btn_to_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrieren"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+</LinearLayout>
