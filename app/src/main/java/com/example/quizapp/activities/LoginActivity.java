@@ -13,7 +13,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
-    private Button btnLoginExecute;
     private FirebaseAuth mAuth;
 
     @Override
@@ -28,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         // Verknüpfung der Views mit den neuen IDs aus activity_login.xml
         etEmail = findViewById(R.id.et_login_email);
         etPassword = findViewById(R.id.et_login_password);
-        btnLoginExecute = findViewById(R.id.btn_login_execute);
+        Button btnLoginExecute = findViewById(R.id.btn_login_execute);
 
         // Klick-Logik für den Login
         btnLoginExecute.setOnClickListener(v -> {

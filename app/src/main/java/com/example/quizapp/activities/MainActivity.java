@@ -10,15 +10,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnToLogin, btnToRegister;
-    private FirebaseAuth mAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // 1. Firebase initialisieren
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         // 2. Prüfen, ob bereits ein User eingeloggt ist
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -34,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         // Falls kein User eingeloggt ist, zeige das normale Auswahl-Layout
         setContentView(R.layout.activity_main);
 
-        btnToLogin = findViewById(R.id.btn_to_login);
-        btnToRegister = findViewById(R.id.btn_to_register);
+        Button btnToLogin = findViewById(R.id.btn_to_login);
+        Button btnToRegister = findViewById(R.id.btn_to_register);
 
         // Navigation zur Registrierung (Folie 08)
         btnToRegister.setOnClickListener(v -> {

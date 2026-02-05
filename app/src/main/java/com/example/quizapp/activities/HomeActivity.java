@@ -9,22 +9,26 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private Button btnLogout;
+    private Button btnStartQuiz, btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        btnStartQuiz = findViewById(R.id.btn_start_quiz);
         btnLogout = findViewById(R.id.btn_logout);
-        btnLogout.setOnClickListener(v -> {
-            // 1. Firebase Logout
-            FirebaseAuth.getInstance().signOut();
-            // 2. Zurück zur Startseite (MainActivity)
-            Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-            // Löscht den Verlauf, damit man nicht mit "Zurück" wieder reinkommt
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
+        // Geht jetzt zur Kategoriewahl statt direkt zum Quiz
+        btnStartQuiz.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, CategoryActivity.class);
+            startActivity(intent);
+        });
+
+        btnLogout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
         });

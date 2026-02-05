@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword, etPasswordConfirm;
-    private Button btnRegister;
     private FirebaseAuth mAuth; // Firebase Zugriff
 
     @Override
@@ -27,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         etPasswordConfirm = findViewById(R.id.et_password_confirm);
-        btnRegister = findViewById(R.id.btn_register_execute);
+        Button btnRegister = findViewById(R.id.btn_register_execute);
 
         // 3. Klick auf den Button
         btnRegister.setOnClickListener(v -> {
