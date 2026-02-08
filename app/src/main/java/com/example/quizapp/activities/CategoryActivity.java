@@ -15,13 +15,25 @@ public class CategoryActivity extends AppCompatActivity {
 
         Button btnErdkunde = findViewById(R.id.btn_erdkunde);
         Button btnRandom = findViewById(R.id.btn_random);
+        Button btnWissenschaft = findViewById(R.id.btn_wissenschaft);
+        Button btnSport = findViewById(R.id.btn_sport);
+        Button btnEssen = findViewById(R.id.btn_essen);
 
         btnErdkunde.setOnClickListener(v -> startQuiz("Erdkunde"));
+        btnWissenschaft.setOnClickListener(v -> startQuiz("Wissenschaft"));
+        btnSport.setOnClickListener(v -> startQuiz("Sport"));
+        btnEssen.setOnClickListener(v -> startQuiz("Essen"));
         btnRandom.setOnClickListener(v -> startQuiz("Zufall"));
     }
 
     private void startQuiz(String category) {
-        Intent intent = new Intent(this, QuizActivity.class);
+        String mode = getIntent().getStringExtra("MODE");
+        Intent intent;
+        if ("learning".equals(mode)) {
+            intent = new Intent(this, LearningActivity.class);
+        } else {
+            intent = new Intent(this, QuizActivity.class);
+        }
         intent.putExtra("CATEGORY", category);
         startActivity(intent);
     }

@@ -24,6 +24,14 @@
         android:text="Quiz starten" />
 
     <Button
+        android:id="@+id/btn_learning_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#2196F3"
+        android:text="Lern-Modus" />
+
+    <Button
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
