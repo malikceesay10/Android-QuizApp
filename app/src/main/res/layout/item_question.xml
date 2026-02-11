@@ -12,9 +12,9 @@
         android:id="@+id/tv_question_item_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center"
         android:padding="20dp"
         android:textColor="#333333"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:background="?android:attr/selectableItemBackground" />
+        android:textSize="16sp" />
 </androidx.cardview.widget.CardView>

@@ -6,55 +6,62 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.quizapp.activities.MainActivity;
 import com.example.quizapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
+    // Deklaration der Eingabefelder für E-Mail und Passwort
     private EditText etEmail, etPassword;
+    // Instanz für die Firebase-Authentifizierung (Schnittstelle zum Server)
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // WICHTIG: Wir nutzen jetzt das eigene Login-Layout
+        // Verbindet die Java-Datei mit dem XML-Layout "activity_login"
         setContentView(R.layout.activity_login);
 
-        // Firebase Initialisierung
+        // Initialisierung der Firebase-Instanz
         mAuth = FirebaseAuth.getInstance();
 
-        // Verknüpfung der Views mit den neuen IDs aus activity_login.xml
+        // UI-Komponenten mit den IDs aus der XML-Datei verknüpfen
         etEmail = findViewById(R.id.et_login_email);
         etPassword = findViewById(R.id.et_login_password);
+
         Button btnLoginExecute = findViewById(R.id.btn_login_execute);
 
-        // Klick-Logik für den Login
+        // Click-Listener: Definiert, was beim Drücken des Buttons passiert
         btnLoginExecute.setOnClickListener(v -> {
+            // Texte werden aus den Feldern geholt und .trim() wird genutzt, um Leerzeichen zu entfernen
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
 
-            if (!email.isEmpty() && !password.isEmpty()) {
-                loginUser(email, password);
+            // Wir prüfen, ob der User Felder leer gelassen hat
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Bitte E-Mail und Passwort eingeben", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT).show();
+                // Wenn Eingaben vorhanden sind, wird die Login-Methode aufgerufen
+                performLogin(email, password);
             }
         });
     }
 
-    private void loginUser(String email, String password) {
-        // Firebase Methode zum Einloggen bestehender User
+    // Methode für die Kommunikation mit dem Firebase-Server
+    private void performLogin(String email, String password) {
+        // Anfrage an Firebase mit den eingegebenen Daten
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
+                    // Überprüfung, ob der Login-Vorgang erfolgreich war
                     if (task.isSuccessful()) {
-                        Toast.makeText(this, "Willkommen zurück!", Toast.LENGTH_SHORT).show();
-
-                        // Weiterleitung zur HomeActivity (Folie 08)
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        startActivity(intent);
-
-                        // finish() sorgt dafür, dass man beim Zurück-Button nicht wieder im Login landet
+                        // Bei Erfolg: Wechsel zur HomeActivity
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                         finish();
+                    } else {
+                        // Bei Fehlern (z.B. falsches Passwort): Anzeige einer Fehlermeldung
+                        // task.getException() liefert den genauen Grund vom Server
+                        Toast.makeText(LoginActivity.this, "Login fehlgeschlagen: " +
+                                task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }

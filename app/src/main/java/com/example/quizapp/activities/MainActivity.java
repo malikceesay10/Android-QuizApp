@@ -14,36 +14,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 1. Firebase initialisieren
+        // Wir prüfen sofort beim Start, ob bereits ein User bei Firebase angemeldet ist.
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        // 2. Prüfen, ob bereits ein User eingeloggt ist
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        // Wenn ein User gefunden wurde (nicht null), leiten wir ihn direkt weiter.
         if (currentUser != null) {
-            // User ist bereits eingeloggt -> Direkt zur HomeActivity springen
-            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-            startActivity(intent);
-            // MainActivity schließen, damit man mit "Zurück" nicht wieder hier landet
+            // Intent zur HomeActivity (Hauptmenü)
+            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+            // finish() schließt die MainActivity, damit man nicht per "Zurück" zum Login-Screen kommt.
             finish();
-            return; // Wichtig, damit der Rest der Methode nicht ausgeführt wird
+            return; // Sicherheitsmaßnahme, um den restlichen Code nicht auszuführen, wenn der User bereits angemeldet ist.
         }
 
-        // Falls kein User eingeloggt ist, zeige das normale Auswahl-Layout
+        // Wenn kein User angemeldet ist, laden wir das Start-Layout mit den Buttons.
         setContentView(R.layout.activity_main);
 
         Button btnToLogin = findViewById(R.id.btn_to_login);
         Button btnToRegister = findViewById(R.id.btn_to_register);
 
-        // Navigation zur Registrierung (Folie 08)
+        // Startet die RegisterActivity, wenn der User auf den Registrier-Button klickt.
         btnToRegister.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(MainActivity.this, RegisterActivity.class));
         });
 
-        // Navigation zum Login (Folie 08)
+        // Startet die LoginActivity für bereits registrierte Nutzer.
         btnToLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
         });
     }
 }

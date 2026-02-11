@@ -2,30 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
-    android:padding="24dp">
+    android:orientation="vertical"
+    android:padding="32dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
         android:text="Quiz App"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="48dp"/>
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_to_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Einloggen"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:text="Einloggen" />
 
     <Button
         android:id="@+id/btn_to_register"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Registrieren"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        android:text="Registrieren" />
 
 </LinearLayout>

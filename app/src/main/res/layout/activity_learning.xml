@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"> <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_learning_list"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#F0F2F5"
-        android:paddingBottom="16dp"
-        android:clipToPadding="false"
+        android:layout_height="wrap_content"
+        android:text="Lern-Modus"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_question_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/layout_single_question"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -25,20 +35,25 @@
             android:id="@+id/tv_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:layout_marginBottom="24dp"
-            android:gravity="center" />
+            android:text="Frage-Text"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"
+            android:padding="8dp"
+            android:background="#FFFFFF" />
 
-        <Button android:id="@+id/btn_optionA" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
-        <Button android:id="@+id/btn_optionB" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
-        <Button android:id="@+id/btn_optionC" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
-        <Button android:id="@+id/btn_optionD" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="24dp"/>
+        <Button android:id="@+id/btn_optionA" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" />
+        <Button android:id="@+id/btn_optionB" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" />
+        <Button android:id="@+id/btn_optionC" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" />
+        <Button android:id="@+id/btn_optionD" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" />
 
         <Button
             android:id="@+id/btn_back_to_list"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Zurück zur Liste"
-            android:backgroundTint="#808080" />
-    </LinearLayout>
+            android:text="Zurück zur Übersicht"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#607D8B" /> </LinearLayout>
+
 </LinearLayout>
+</ScrollView>

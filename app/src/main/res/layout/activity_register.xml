@@ -2,32 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_vertical"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center_vertical">
+    android:padding="24dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Neuen Account erstellen"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="32dp"
+        android:text="Neuer Account"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="E-Mail Adresse"
-        android:inputType="textEmailAddress" />
+        android:hint="E-Mail"
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="12dp" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Passwort wählen"
-        android:inputType="textPassword" />
+        android:hint="Passwort (min. 6 Zeichen)"
+        android:inputType="textPassword"
+        android:layout_marginBottom="12dp" />
 
     <EditText
         android:id="@+id/et_password_confirm"
@@ -41,5 +43,6 @@
         android:id="@+id/btn_register_execute"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Jetzt Registrieren" />
+        android:text="Registrieren" />
+
 </LinearLayout>

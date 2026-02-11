@@ -11,47 +11,65 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText etEmail, etPassword, etPasswordConfirm;
-    private FirebaseAuth mAuth; // Firebase Zugriff
+    // Deklaration der Eingabefelder (etConfirm für die Passwort-Wiederholung)
+    private EditText etEmail, etPassword, etConfirm;
+    // Firebase-Instanz für die Erstellung neuer Benutzerkonten
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Lädt das XML-Layout für die Registrierung
         setContentView(R.layout.activity_register);
 
-        // 1. Firebase Dienst holen
+        // Verbindung zum Firebase-Projekt herstellen
         mAuth = FirebaseAuth.getInstance();
 
-        // 2. XML Elemente finden
+        // Verknüpfung der Java-Variablen mit den IDs aus der XML
+        // etConfirm ist wichtig, um Tippfehler beim Passwort abzufangen
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
-        etPasswordConfirm = findViewById(R.id.et_password_confirm);
+        etConfirm = findViewById(R.id.et_password_confirm);
         Button btnRegister = findViewById(R.id.btn_register_execute);
 
-        // 3. Klick auf den Button
+        // Click-Listener für den Registrierungs-Button
         btnRegister.setOnClickListener(v -> {
+            // Auslesen der Daten und Entfernen von Leerzeichen mit .trim()
             String email = etEmail.getText().toString().trim();
             String pass = etPassword.getText().toString().trim();
-            String confirm = etPasswordConfirm.getText().toString().trim();
+            String confirm = etConfirm.getText().toString().trim();
 
-            if (pass.equals(confirm) && pass.length() >= 6) {
-                registerUser(email, pass);
+            // Erweiterte Validierung für die Registrierung
+            // Wir prüfen: Sind Felder leer? Stimmen die Passwörter überein? Ist es lang genug?
+            if (email.isEmpty() || pass.isEmpty()) {
+                Toast.makeText(this, "Felder dürfen nicht leer sein", Toast.LENGTH_SHORT).show();
+            } else if (!pass.equals(confirm)) {
+                // Lokaler Vergleich verhindert unnötige Server-Anfragen bei Tippfehlern
+                Toast.makeText(this, "Passwörter stimmen nicht überein", Toast.LENGTH_SHORT).show();
+            } else if (pass.length() < 6) {
+                // Firebase fordert aus Sicherheitsgründen mindestens 6 Zeichen
+                Toast.makeText(this, "Passwort muss mind. 6 Zeichen haben", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Passwörter stimmen nicht überein oder zu kurz!", Toast.LENGTH_SHORT).show();
+                // Wenn alle lokalen Checks bestanden sind, wird der User in der Cloud angelegt
+                createNewUser(email, pass);
             }
         });
     }
 
-    private void registerUser(String email, String password) {
+    // Methode zur Kommunikation mit der Firebase-Datenbank (User-Erstellung)
+    private void createNewUser(String email, String password) {
+        // Befehl zum Erstellen eines neuen Accounts
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(this, "Registrierung erfolgreich!", Toast.LENGTH_SHORT).show();
-
-                        // Direkt nach Reg einloggen und zur Startseite
-                        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                        startActivity(intent);
+                        // Bei Erfolg: Kurze Bestätigung und Wechsel zum Hauptmenü
+                        Toast.makeText(this, "Account erstellt!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+                        // Schließen der Activity, um den Registrierungs-Stack zu leeren
                         finish();
+                    } else {
+                        // Fehlermeldung vom Server (z.B. E-Mail existiert bereits)
+                        Toast.makeText(this, "Fehler: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }
