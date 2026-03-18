@@ -1,8 +1,8 @@
 # Projekt: QuizApp - Teste dein Wissen
 
-# Modul: App Entwicklung mit Android
-# Prof.: Holger Zimmermann
-# WS 2025/2026
+* Modul: App Entwicklung mit Android
+* Prof.: Holger Zimmermann
+* WS 2025/2026
 
 
 
