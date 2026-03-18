@@ -11,18 +11,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    // Deklaration der Eingabefelder für E-Mail und Passwort
     private EditText etEmail, etPassword;
-    // Instanz für die Firebase-Authentifizierung (Schnittstelle zum Server)
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Verbindet die Java-Datei mit dem XML-Layout "activity_login"
         setContentView(R.layout.activity_login);
 
-        // Initialisierung der Firebase-Instanz
         mAuth = FirebaseAuth.getInstance();
 
         // UI-Komponenten mit den IDs aus der XML-Datei verknüpfen

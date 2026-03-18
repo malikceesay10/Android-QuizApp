@@ -15,11 +15,11 @@ public class HomeActivity extends AppCompatActivity {
         // Lädt das Hauptmenü-Layout nach erfolgreichem Login
         setContentView(R.layout.activity_home);
 
-        // NAVIGATION: Quiz-Modus starten
-        // Wir übergeben den String "quiz" als Extra, damit die nächste Activity den Modus kennt
+        // Quiz-Modus starten
+        // Wir übergeben den String "quiz", damit die nächste Activity den Modus kennt
         findViewById(R.id.btn_start_quiz).setOnClickListener(v -> navigateToCategory("quiz"));
 
-        // NAVIGATION: Lern-Modus starten
+        // Lern-Modus starten
         // Gleiche Ziel-Activity, aber wir kennzeichnen den Modus als "learning"
         findViewById(R.id.btn_learning_mode).setOnClickListener(v -> navigateToCategory("learning"));
 

@@ -14,7 +14,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class LearningActivity extends AppCompatActivity {
 
-    // Hier wird der Container für die Liste aller Fragen definiert
     private LinearLayout llQuestionContainer;
     // Hier wird die Ansicht definiert, die die Details einer einzelnen Frage zeigt (Frage + Antworten)
     private LinearLayout layoutSingleQuestion;

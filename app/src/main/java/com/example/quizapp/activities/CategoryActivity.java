@@ -37,7 +37,8 @@ public class CategoryActivity extends AppCompatActivity {
 
         Intent intent;
         if ("learning".equals(mode)) {
-            // Wenn der Lernmodus aktiv ist, starten wir die LearningActivity
+            // Wenn der Lernmodus aktiv ist, starten wir die LearningActivity, Basierend auf
+            // diesem Wert entscheidet die Activity wohin es weitergeht
             intent = new Intent(this, LearningActivity.class);
         } else {
             // Standardmäßig starten wir die QuizActivity

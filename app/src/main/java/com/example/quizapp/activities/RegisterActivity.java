@@ -11,9 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    // Deklaration der Eingabefelder (etConfirm für die Passwort-Wiederholung)
     private EditText etEmail, etPassword, etConfirm;
-    // Firebase-Instanz für die Erstellung neuer Benutzerkonten
     private FirebaseAuth mAuth;
 
     @Override
@@ -26,7 +24,6 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         // Verknüpfung der Java-Variablen mit den IDs aus der XML
-        // etConfirm ist wichtig, um Tippfehler beim Passwort abzufangen
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         etConfirm = findViewById(R.id.et_password_confirm);
@@ -56,7 +53,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    // Methode zur Kommunikation mit der Firebase-Datenbank (User-Erstellung)
     private void createNewUser(String email, String password) {
         // Befehl zum Erstellen eines neuen Accounts
         mAuth.createUserWithEmailAndPassword(email, password)

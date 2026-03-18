@@ -13,7 +13,6 @@ public class ResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Lädt das Layout aus der activity_result.xml und verbindet es mit dieser Java-Datei
         setContentView(R.layout.activity_result);
 
         // UI-Komponenten initialisieren

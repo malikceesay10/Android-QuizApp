@@ -16,7 +16,6 @@ import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
 
-    // TextViews für die Anzeige der Frage und des Timers
     private TextView tvQuestion, tvTimer;
     // Buttons für die vier Antwortmöglichkeiten
     private Button btnA, btnB, btnC, btnD;
@@ -26,7 +25,6 @@ public class QuizActivity extends AppCompatActivity {
     // Liste, die die vom User gewählten Antworten speichert
     private ArrayList<String> userAnswers = new ArrayList<>();
 
-    // Hält fest, bei welcher Frage der User gerade ist
     private int currentQuestionIndex = 0;
     // Der Timer-Prozess für das Zeitlimit pro Frage
     private CountDownTimer countDownTimer;
